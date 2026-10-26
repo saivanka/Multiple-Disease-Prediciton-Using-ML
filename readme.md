@@ -1,40 +1,49 @@
 # Multiple Disease Prediction
 
+A Streamlit web app that predicts the likelihood of three conditions from manually entered health measurements, using pre-trained machine learning models saved as pickle files.
 
-## Documentation
+## What it does
 
+The sidebar menu offers three prediction pages:
 
-1) Install Required Libreries From the requirements.txt
+- **Diabetes Prediction** — enter 8 measurements (pregnancies, glucose, blood pressure, skin thickness, insulin, BMI, diabetes pedigree function, age) and get a diabetic / not diabetic result.
+- **Heart Disease Prediction** — enter 13 measurements (age, sex, chest pain type, resting blood pressure, cholesterol, fasting blood sugar, resting ECG, maximum heart rate, exercise-induced angina, ST depression, slope, major vessels, thal) and get a heart disease / no heart disease result.
+- **Parkinsons Prediction** — enter 22 voice measurements (MDVP fundamental frequencies, jitter, shimmer, NHR, HNR, RPDE, DFA, spread, D2, PPE) and get a Parkinson's / no Parkinson's result.
 
+Each page loads its model from `saved_models/` with pickle and shows the result when its test-result button is pressed. The sidebar and main-area styling come from `sidebar.css` and `style.css`.
 
-> pip install -r requirements.txt
+## Tech stack
 
+- Python with Streamlit for the web app and `streamlit-option-menu` for the sidebar navigation
+- Pre-trained models loaded with pickle (`.sav` files in `saved_models/`)
+- Datasets in `D.csv`, `H.csv` and `P.csv` at the repo root
+- Custom CSS for the sidebar and content area
 
->This will install all the libraries like streamlit , pickle , streamlit_option_menu
+## How to run
 
+```bash
+pip install -r requirements.txt
+streamlit run main.py
+```
 
-2) Open Main.py file and set saved model paths
+This launches the Streamlit app in your default web browser.
 
+**Setup note:** `main.py` currently loads the three models from hardcoded Windows paths. Before running on another machine, update those three paths to point at the `saved_models/` files in this repo.
 
-3) Run Streamlit for the file execution
->streamlit run main.py
+## Project structure
 
+```
+main.py           # Streamlit app: sidebar navigation and the three prediction pages
+saved_models/     # Pre-trained diabetes, heart disease and Parkinson's models (.sav)
+D.csv, H.csv, P.csv  # Datasets
+collab files/     # Colab notebooks
+streamlit/        # Streamlit-related files
+sidebar.css       # Sidebar styling
+style.css         # Main content styling
+flowchart.jpg     # Project flowchart
+requirements.txt  # Python dependencies
+```
 
+## Status
 
-
-4) This will launch the Streamlit web application in your default web browser.
-
-
-5) Using CSV files in the directory or by manually entering the input features into the web application, provide the values for the input features such as age, blood pressure, cholesterol levels, and so on.
-
-
-6) Once you have entered the required input features, the application will use the trained machine learning models to predict the likelihood of the person having diabetes, heart disease, or Parkinson's disease.
-
-
-#### In summary, the Multiple Disease Prediction application is a user-friendly tool that uses machine learning algorithms to predict the likelihood of a person having diabetes, heart disease, or Parkinson's disease. By following the above steps, users can easily use this application to make informed decisions about their health.
-
-<<<<<<< HEAD
-#### Document Link : <a href="https://docs.google.com/document/d/17BQyZU0rE5WBRDx_bL8X7WOmgwfvLaJG_NXv8HkWBhs/edit?usp=sharing">Final Report Link</a>
-=======
-#### Document Link : <a href="https://docs.google.com/document/d/17BQyZU0rE5WBRDx_bL8X7WOmgwfvLaJG_NXv8HkWBhs/edit?usp=sharing">Final Report Link</a>
->>>>>>> 7326e7e6780f2637aed3f7b7a5c186927438e825
+A completed student-style ML demo. Its predictions are model outputs for demonstration only — not a medical diagnosis, and not a substitute for professional medical advice.
